@@ -97,7 +97,34 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # while robot can move right:
+        #   pick up current item
+        #   compare current item with next item and swap if greater
+        #   move to next item
+        # move all the way to the left (and repeat the loop above)
+        #   if no items get swapped by reaching the end, then break
+
+        while True:
+            self.set_light_off()
+            # print("Setting light off")
+
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                    # print("Swapped item")
+
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            
+            while self.can_move_left():
+                self.move_left()
+
+            if not self.light_is_on():
+                break
 
 
 if __name__ == "__main__":
